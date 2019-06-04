@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -75,6 +76,24 @@ namespace ExcelExtension
             }
         }
 
+        [ExcelFunction(Description = "Kalorie")]
+        public static string Kalorie(string name, int grams)
+        {
+            try
+            {
+                var data = GetData();
+
+                if (data.ContainsKey(name))
+                    return (grams * data[name].Kalorie).ToString();
+                else
+                    return "Neni zapsano v jidlech";
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+        }
+
         private static Dictionary<string, Food> GetData()
         {
             var lines = File.ReadAllLines(FoodPath);
@@ -87,9 +106,10 @@ namespace ExcelExtension
                 result.Add(new Food
                 {
                     Name = values[0],
-                    Bilkoviny = Convert.ToInt32(values[1]),
-                    Sacharidy = Convert.ToInt32(values[2]),
-                    Tuky = Convert.ToInt32(values[3]),
+                    Bilkoviny = Convert.ToDouble(values[1], CultureInfo.InvariantCulture),
+                    Sacharidy = Convert.ToDouble(values[2], CultureInfo.InvariantCulture),
+                    Tuky = Convert.ToDouble(values[3], CultureInfo.InvariantCulture),
+                    Kalorie = Convert.ToDouble(values[4], CultureInfo.InvariantCulture),
                 });
             }
 
@@ -99,9 +119,10 @@ namespace ExcelExtension
         public class Food
         {
             public string Name { get; set; }
-            public int Bilkoviny { get; set; }
-            public int Sacharidy { get; set; }
-            public int Tuky { get; set; }
+            public double Bilkoviny { get; set; }
+            public double Sacharidy { get; set; }
+            public double Tuky { get; set; }
+            public double Kalorie { get; set; }
         }
     }
 }
