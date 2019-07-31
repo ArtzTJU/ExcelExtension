@@ -105,11 +105,11 @@ namespace ExcelExtension
                 var values = line.Split(';');
                 result.Add(new Food
                 {
-                    Name = values[0],
-                    Proteins = Convert.ToDouble(values[1], CultureInfo.InvariantCulture),
-                    Carbohydrates = Convert.ToDouble(values[2], CultureInfo.InvariantCulture),
-                    Fats = Convert.ToDouble(values[3], CultureInfo.InvariantCulture),
-                    Calories = Convert.ToDouble(values[4], CultureInfo.InvariantCulture),
+                    Name = values[0].ToString(),
+                    Proteins = double.Parse(values[1], NumberStyles.Any, CultureInfo.InvariantCulture),
+                    Carbohydrates = double.Parse(values[2], NumberStyles.Any, CultureInfo.InvariantCulture),
+                    Fats = double.Parse(values[3], NumberStyles.Any, CultureInfo.InvariantCulture),
+                    Calories = double.Parse(values[4], NumberStyles.Any, CultureInfo.InvariantCulture),
                 });
             }
 
