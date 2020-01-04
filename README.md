@@ -10,6 +10,7 @@ Reads data from a csv file which should be placed in the same folder as the addo
 * Fats
 * Calories
 
+---
 
 #### Tech Stack:
 * C#
@@ -19,3 +20,5 @@ Reads data from a csv file which should be placed in the same folder as the addo
 * Visual Studio 2017
 * SourceTree
 * Microsoft Excel 2016
+
+ By [ArtzTJU](https://github.com/ArtzTJU)
